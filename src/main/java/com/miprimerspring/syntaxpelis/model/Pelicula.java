@@ -4,6 +4,7 @@ package com.miprimerspring.syntaxpelis.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 //Para indicar a Spring que esto es una entidad usamos la anotación @Entity
 @Entity
@@ -28,6 +29,27 @@ public class Pelicula {
 
     @Column(name = "pelicula_presupuesto")
     private BigDecimal peliculaPresupuesto;
+
+    /** RELACIONES DE LA ENTIDAD **/
+    //Relación n-1 con director
+    @ManyToOne
+    @JoinColumn(name = "pelicula_director", nullable = false)
+    private Director peliculaDirector;
+
+    //Relación n-1 con país
+    @ManyToOne
+    @JoinColumn(name = "pelicula_pais", nullable = false)
+    private Pais peliculaPais;
+
+    //Relacion n-n con generos
+    @ManyToMany
+    @JoinTable(
+            name = "peliculas_generos",//Nombre de la tabla intermedia
+            joinColumns = @JoinColumn(name = "pelicula_id"),//Nombre de la columna que lleva la llave foránea en la entidad actual
+            inverseJoinColumns = @JoinColumn(name = "genero_id")//Nombre de la columna que lleva la llave foránea de la otra tabla
+    )
+    private List<Genero> peliculasGeneros;
+
 
     /** CONSTRUCTORES **/
     public Pelicula() {

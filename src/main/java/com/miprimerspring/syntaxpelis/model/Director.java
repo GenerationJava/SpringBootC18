@@ -1,9 +1,11 @@
 package com.miprimerspring.syntaxpelis.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "directores")
@@ -18,6 +20,16 @@ public class Director {
 
     @Column(name = "director_fecha")
     private Date directorFechaNacimiento;
+
+    //Esto puede generar problemas de recursividad, porque cuando consulto por un director este trae la información de todas las películas
+    @JsonIgnore//Esta anotación va a ignorar la lista de películas cuando se consulte por director
+    @OneToMany(mappedBy = "peliculaDirector")//En la relación OneToMany indicamos el atributo de la otra tabla, que mapea la relación
+    private List<Pelicula> directorPeliculas;
+
+    @ManyToOne
+    @JoinColumn(name = "director_nacionalidad")
+    private Pais directorNacionalidad;
+    
 
     public Director() {
     }
