@@ -29,7 +29,7 @@ public class Director {
     @ManyToOne
     @JoinColumn(name = "director_nacionalidad")
     private Pais directorNacionalidad;
-    
+
 
     public Director() {
     }

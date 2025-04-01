@@ -38,7 +38,7 @@ public class Pelicula {
 
     //Relación n-1 con país
     @ManyToOne
-    @JoinColumn(name = "pelicula_pais", nullable = false)
+    @JoinColumn(name = "pelicula_pais", nullable = true)
     private Pais peliculaPais;
 
     //Relacion n-n con generos
@@ -103,6 +103,30 @@ public class Pelicula {
 
     public void setPeliculaPresupuesto(BigDecimal peliculaPresupuesto) {
         this.peliculaPresupuesto = peliculaPresupuesto;
+    }
+
+    public Director getPeliculaDirector() {
+        return peliculaDirector;
+    }
+
+    public void setPeliculaDirector(Director peliculaDirector) {
+        this.peliculaDirector = peliculaDirector;
+    }
+
+    public Pais getPeliculaPais() {
+        return peliculaPais;
+    }
+
+    public void setPeliculaPais(Pais peliculaPais) {
+        this.peliculaPais = peliculaPais;
+    }
+
+    public List<Genero> getPeliculasGeneros() {
+        return peliculasGeneros;
+    }
+
+    public void setPeliculasGeneros(List<Genero> peliculasGeneros) {
+        this.peliculasGeneros = peliculasGeneros;
     }
 
     /** ToString **/

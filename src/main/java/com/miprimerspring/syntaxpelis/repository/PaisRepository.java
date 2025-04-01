@@ -1,4 +1,10 @@
 package com.miprimerspring.syntaxpelis.repository;
 
-public interface PaisRepository {
+import com.miprimerspring.syntaxpelis.model.Pais;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PaisRepository extends JpaRepository<Pais, Long> {
+
 }
