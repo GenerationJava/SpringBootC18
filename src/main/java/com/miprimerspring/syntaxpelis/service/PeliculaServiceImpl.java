@@ -1,4 +1,4 @@
-package com.miprimerspring.syntaxpelis.PeliculaService;
+package com.miprimerspring.syntaxpelis.service;
 
 import com.miprimerspring.syntaxpelis.model.Pelicula;
 import com.miprimerspring.syntaxpelis.repository.PeliculaRepository;

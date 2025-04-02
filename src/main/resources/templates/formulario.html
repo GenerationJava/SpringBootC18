@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Película</title>
+</head>
+<body>
+<h1>Nueva Película</h1>
+
+<form th:action="@{/peliculas/guardar}" th:object="${pelicula}" method="post">
+
+    <label>Título:</label>
+    <input type="text" th:field="*{peliculaTitulo}" required>
+
+    <label>Año:</label>
+    <input type="number" th:field="*{peliculaAnio}">
+
+    <label>Géneros:</label>
+    <div th:each="genero : ${generos}">
+      <input type="checkbox" name="generosIds" th:value="${genero.generoId}">
+      <label th:text="${genero.generoNombre}"></label>
+    </div>
+
+  <button type="submit">Guardar</button>
+</form>
+
+<a th:href="@{/peliculas/listado}">Ver listado</a>
+</body>
+</html>

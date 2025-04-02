@@ -1,17 +1,11 @@
 package com.miprimerspring.syntaxpelis.api;
 
-import com.miprimerspring.syntaxpelis.PeliculaService.DirectorService;
-import com.miprimerspring.syntaxpelis.PeliculaService.DirectorServiceImpl;
-import com.miprimerspring.syntaxpelis.PeliculaService.PeliculaServiceImpl;
-import com.miprimerspring.syntaxpelis.model.Director;
-import com.miprimerspring.syntaxpelis.model.Pais;
-import com.miprimerspring.syntaxpelis.model.Pelicula;
-import com.miprimerspring.syntaxpelis.model.Usuario;
+import com.miprimerspring.syntaxpelis.service.*;
+import com.miprimerspring.syntaxpelis.model.*;
 import com.miprimerspring.syntaxpelis.repository.MiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +13,8 @@ import java.util.List;
 @RestController
 public class MiAppRestController {
 
+
+    //Autowired es una manera de inyectar dependencias, pero no se recomienda usarla. Mejor usar constructores
     @Autowired
     private MiRepository miRepository;
 
@@ -27,6 +23,12 @@ public class MiAppRestController {
 
     @Autowired
     private DirectorServiceImpl directorService;
+
+    @Autowired
+    private GeneroServiceImpl generoService;
+
+    @Autowired
+    private PaisServiceImpl paisService;
 
     @Value("${custom.message}")
     private String message;
@@ -54,5 +56,6 @@ public class MiAppRestController {
         peliculaService.savePelicula(peliculaPrueba);
         return peliculaService.findAllPelicula();
     }
+
 
 }

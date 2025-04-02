@@ -1,4 +1,4 @@
-package com.miprimerspring.syntaxpelis.PeliculaService;
+package com.miprimerspring.syntaxpelis.service;
 
 import com.miprimerspring.syntaxpelis.model.Pelicula;
 
@@ -10,4 +10,6 @@ public interface PeliculaService {
     Pelicula savePelicula(Pelicula pelicula);
 
     List<Pelicula> findAllPelicula();
+
+
 }
