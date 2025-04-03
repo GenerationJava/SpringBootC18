@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Agregar Película</title>
+    <meta charset="UTF-8">
+    <title>Agregar Película</title>
 </head>
 <body>
 <h1>Nueva Película</h1>
 
-<form th:action="@{/peliculas/guardar}" th:object="${serie}" method="post">
+<form th:action="@{/peliculas/guardar}" th:object="${pelicula}" method="post" enctype="multipart/form-data">
 
-    <label>Título:</label>
-    <input type="text" th:field="*{peliculaTitulo}" required>
+        <label>Título:</label>
+        <input type="text" th:field="*{peliculaTitulo}" required>
 
-    <label>Año:</label>
-    <input type="number" th:field="*{peliculaAnio}">
+        <label>Año:</label>
+        <input type="number" th:field="*{peliculaAnio}" min="1880" max="2025">
 
-
-    <label>Géneros:</label>
-    <div th:each="genero : ${generos}">
-      <input type="checkbox" name="generosIds" th:value="${genero.generoId}">
-      <label th:text="${genero.generoNombre}"></label>
+    <!-- URL de Imagen -->
+    <div>
+        <label>URL de la Imagen:</label>
+        <input type="text" th:field="*{peliculaImagenUrl}">
     </div>
 
-  <button type="submit">Guardar</button>
+    <div>
+        <label>Géneros:</label>
+        <div th:each="genero : ${generos}">
+            <input type="checkbox" name="generosIds" th:value="${genero.generoId}">
+            <label th:text="${genero.generoNombre}"></label>
+        </div>
+    </div>
+
+    <button type="submit">Guardar Película</button>
 </form>
 
-<a th:href="@{/peliculas/listado}">Ver listado</a>
+<a th:href="@{/peliculas/listado}">Ver Listado de Películas</a>
 </body>
 </html>

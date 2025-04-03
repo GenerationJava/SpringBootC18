@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Peliculas</title>
+</head>
+<body>
+<h1> Peliculas disponibles</h1>
+  <div>
+    <table>
+      <thead>
+        <tr>Titulo</tr>
+        <tr>Año</tr>
+        <tr>Duracion</tr>
+      </thead>
+      <tbody>
+       <tr th:each="pelicula: ${lista}">
+         <td th:text="${pelicula.peliculaTitulo}"></td>
+         <td th:text="${pelicula.peliculaAnio}"> </td>
+         <td th:text="${pelicula.peliculaDuracion}"> </td>
+       </tr>
+      </tbody>
+    </table>
+  </div>
+ <a th:href="@{/peliculas/agregar}">Agregar película</a>
+</body>
+</html>

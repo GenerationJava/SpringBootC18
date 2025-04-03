@@ -30,6 +30,9 @@ public class Pelicula {
     @Column(name = "pelicula_presupuesto")
     private BigDecimal peliculaPresupuesto;
 
+    @Column(name = "pelicula_imagen")
+    private String peliculaImagenUrl;
+
     /** RELACIONES DE LA ENTIDAD **/
     //Relación n-1 con director
     @ManyToOne
@@ -56,12 +59,13 @@ public class Pelicula {
 
     }
 
-    public Pelicula(long peliculaId, String peliculaTitulo, Integer peliculaAnio, Integer peliculaDuracion, BigDecimal peliculaPresupuesto) {
+    public Pelicula(long peliculaId, String peliculaTitulo, Integer peliculaAnio, Integer peliculaDuracion, BigDecimal peliculaPresupuesto, String peliculaImagenUrl) {
         this.peliculaId = peliculaId;
         this.peliculaTitulo = peliculaTitulo;
         this.peliculaAnio = peliculaAnio;
         this.peliculaDuracion = peliculaDuracion;
         this.peliculaPresupuesto = peliculaPresupuesto;
+        this.peliculaImagenUrl = peliculaImagenUrl;
     }
 
     /** Getter & Setter **/
@@ -127,6 +131,14 @@ public class Pelicula {
 
     public void setPeliculasGeneros(List<Genero> peliculasGeneros) {
         this.peliculasGeneros = peliculasGeneros;
+    }
+
+    public String getPeliculaImagenUrl() {
+        return peliculaImagenUrl;
+    }
+
+    public void setPeliculaImagenUrl(String peliculaImagenUrl) {
+        this.peliculaImagenUrl = peliculaImagenUrl;
     }
 
     /** ToString **/

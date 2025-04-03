@@ -9,12 +9,6 @@ import com.miprimerspring.syntaxpelis.service.PeliculaServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 
 //@Controller anota un controlador MVC, es decir, para controlar vistas dentro de un modelo MVC
@@ -43,10 +37,12 @@ public class PruebaController {
     //Model es un objeto de Spring MVC que representa la plantilla HTML
     public String mostrarFormulario(Model model) {
         //Con el model.addAttribute le puedo pasar un objeto o variable a la vista
-        model.addAttribute("serie", new Pelicula());
+        model.addAttribute("pelicula", new Pelicula());
         //Para que se muestren los generos, primero llamamos al service
         model.addAttribute("generos", generoService.findAllGenero());
         model.addAttribute("directores", directorService.findAllDirector());
         return "formulario";
     }
+
+
 }
