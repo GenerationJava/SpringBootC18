@@ -16,6 +16,13 @@ public interface DirectorRepository extends JpaRepository<Director, Long> {
     @Query("SELECT d FROM Director d WHERE d.directorNacionalidad.paisId = :paisId")
     List<Director> findByNacionalidadId(@Param("paisId") Long paisId);
 
+    //El objeto Optional se usa cuando puede que traiga el resultado o no
     Optional<Director> findByDirectorNombre(String nombre);
+
+    //Declaramos un método que verifica si existe director por id
+    Boolean existsDirectorByDirectorNombre(String nombre);
+
+    @Query(value = "SELECT * FROM directores d where d.director_id = 1", nativeQuery = true)
+    Optional<Director> findById();
 
 }

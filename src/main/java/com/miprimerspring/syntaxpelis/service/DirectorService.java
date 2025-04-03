@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface DirectorService {
 
+    //Declaración de método para guardar director
     Director saveDirector(Director director);
 
     //Declaración de método para buscar lista de Directores

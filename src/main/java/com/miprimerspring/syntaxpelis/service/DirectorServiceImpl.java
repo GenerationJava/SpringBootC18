@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional//Esta anotación a nivel de clase indica que todos los métodos se ejecutan como transacción, garantizando que se cumplan los principios ACID
 public class DirectorServiceImpl implements DirectorService {
 
     //Campo que inyecta DirectorRepository
@@ -21,6 +21,7 @@ public class DirectorServiceImpl implements DirectorService {
 
 
     //Implementaciones de métodos declarados en DirectorService
+
     @Override
     public Director saveDirector(Director director) {;
         return directorRepository.save(director);
@@ -33,12 +34,14 @@ public class DirectorServiceImpl implements DirectorService {
 
     @Override
     public Director findByDirectorId(Long id) {
+
         return directorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Director no encontrado"));
     }
 
     @Override
     public Director findByNombre(String nombre) {
+        //El método findByDirectorNombre devuelve un Optional porque puede que se encuentre el director o no
         return directorRepository.findByDirectorNombre(nombre).orElse(null);
     }
 

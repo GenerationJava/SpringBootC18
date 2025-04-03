@@ -11,5 +11,13 @@ public interface PeliculaService {
 
     List<Pelicula> findAllPelicula();
 
+    Pelicula findById(Long id);
+
+    List<Pelicula> findByAnio(Integer anio);
+
+    List<Pelicula> findByDirector(String nombreDirector);
+
+    void deleteById(Long id);
+
 
 }
