@@ -21,21 +21,27 @@
   <div class="card bg-secondary text-white detail-card">
     <div class="row g-0">
       <div class="col-md-4">
-        <img class="img-fluid rounded-start movie-poster">
+        <img th:if="${pelicula.peliculaImagenUrl}"
+             th:src="${pelicula.peliculaImagenUrl}"
+             class="img-fluid rounded-start movie-poster">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h2 class="card-title"></h2>
+          <h2 class="card-title" th:text="${pelicula.peliculaTitulo}"></h2>
           <p class="card-text">
-            <strong>Año:</strong> <span></span><br>
-            <strong>Director:</strong> <span></span><br>
+            <strong>Año:</strong> <span th:text="${pelicula.peliculaAnio}"></span><br>
+            <strong>Director:</strong> <span th:text="${pelicula.peliculaDirector.directorNombre}"></span><br>
             <strong>Géneros:</strong>
-            <span class="badge bg-primary me-1"></span>
+            <span th:each="genero : ${pelicula.peliculasGeneros}"
+                  th:text="${genero.generoNombre}"
+                  class="badge bg-primary me-1"></span>
           </p>
           <div class="mt-4">
-            <a class="btn btn-warning me-2">Editar</a>
-            <a class="btn btn-danger me-2">Eliminar</a>
-            <a class="btn btn-outline-light">Volver al listado</a>
+            <a th:href="@{'/peliculas/editar/' + ${pelicula.peliculaId}}" class="btn btn-warning me-2">Editar</a>
+            <a th:href="@{'/peliculas/eliminar/' + ${pelicula.peliculaId}}"
+               class="btn btn-danger me-2"
+              onclick="return confirm('¿Seguro de eliminar la película?')">Eliminar</a>
+            <a th:href="@{/peliculas/lista}" class="btn btn-outline-light">Volver al listado</a>
           </div>
         </div>
       </div>

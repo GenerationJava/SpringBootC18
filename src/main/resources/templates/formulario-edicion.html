@@ -15,44 +15,49 @@
         </div>
         <div class="card-body">
 
-          <form method="post">
+          <form th:action="@{'/peliculas/actualizar/' + ${pelicula.peliculaId}}" th:object="${pelicula}" method="post">
 
             <div class="mb-3">
               <label class="form-label">Título:</label>
-              <input type="text" class="form-control" required>
+              <input type="text" class="form-control" th:field="${pelicula.peliculaTitulo}" required>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Año:</label>
-              <input type="number" class="form-control">
+              <input type="number" class="form-control" th:field="${pelicula.peliculaAnio}" min="1880" max="2025">
             </div>
 
             <div class="mb-3">
               <label class="form-label">URL de la Imagen:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" th:field="${pelicula.peliculaImagenUrl}">
             </div>
 
             <div class="mb-3">
               <label class="form-label">Director:</label>
-              <select class="form-select">
-                <option>
+              <select class="form-select" th:field="${pelicula.peliculaDirector}">
+                <option th:each="director : ${directores}"
+                        th:value="${director.directorId}"
+                        th:text="${director.directorNombre}"
+                        th:selected="${director.directorId == pelicula.peliculaDirector.directorId}">
                 </option>
               </select>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Géneros:</label>
-              <div  class="form-check">
+              <div  th:each="genero : ${generos}" class="form-check">
                 <input class="form-check-input"
                        type="checkbox"
-                       name="generosIds">
-                <label class="form-check-label"></label>
+                       name="generosIds"
+                       th:value="${genero.generoId}"
+                       th:checked="${generosSeleccionados.contains(genero.generoId)}">
+                <label class="form-check-label" th:text="${genero.generoNombre}"></label>
               </div>
             </div>
 
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-warning">Actualizar Película</button>
-              <a class="btn btn-outline-secondary">Cancelar</a>
+              <a th:href="@{'/peliculas/ver/' + ${pelicula.peliculaId}}" class="btn btn-outline-secondary">Cancelar</a>
             </div>
           </form>
         </div>

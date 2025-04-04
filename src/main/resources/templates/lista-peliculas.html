@@ -11,7 +11,7 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-0 text-light">Películas Disponibles</h1>
-        <a class="btn btn-success">+ Nueva Película</a>
+        <a th:href="@{/peliculas/formulario}" class="btn btn-success">+ Nueva Película</a>
     </div>
 
     <div class="card shadow">
@@ -29,27 +29,34 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr th:each="pelicula : ${lista}">
                         <td>
-                            <img class="img-thumbnail" width="100">
+                            <img th:if="${pelicula.peliculaImagenUrl}"
+                                 th:src="${pelicula.peliculaImagenUrl}"
+                                    class="img-thumbnail" width="100">
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td th:text="${pelicula.peliculaTitulo}"></td>
+                        <td th:text="${pelicula.peliculaAnio}"></td>
+                        <td th:text="${pelicula.peliculaDirector.directorNombre}"></td>
                         <td>
-                            <span class="badge bg-secondary me-1"></span>
+                            <span th:each="genero : ${pelicula.peliculasGeneros}"
+                                  th:text="${genero.generoNombre}" class="badge bg-secondary me-1"></span>
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-sm btn-outline-info p-1">
+                                <a th:href="@{'/peliculas/ver/' + ${pelicula.peliculaId}}"
+                                   class="btn btn-sm btn-outline-primary">
                                     <i class="bi bi-eye-fill"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-outline-warning p-1 mx-1">
+                                </a>
+                                <a th:href="@{'/peliculas/editar/' + ${pelicula.peliculaId}}"
+                                   class="btn btn-sm btn-outline-warning">
                                     <i class="bi bi-pencil-fill"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-outline-danger p-1">
+                                </a>
+                                <a th:href="@{'/peliculas/eliminar/' + ${pelicula.peliculaId}}"
+                                    class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('¿Estas seguro de que deseas eliminar la película?')">
                                     <i class="bi bi-trash-fill"></i>
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>

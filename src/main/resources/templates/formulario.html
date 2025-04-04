@@ -15,42 +15,45 @@
                 </div>
 
                 <div class="card-body">
-
-                    <form method="post">
+                    <!-- Formulario de creación de la película -->
+                    <form th:action="@{/peliculas/formulario/guardar}"  th:object="${pelicula}" method="post">
 
                         <div class="mb-3">
                             <label class="form-label">Título:</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" th:field="*{peliculaTitulo}" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Año:</label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" th:field="*{peliculaAnio}" min="1880" max="2025">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">URL de la Imagen:</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" th:field="*{peliculaImagenUrl}" placeholder="https://estoesunejemplo.com">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Director:</label>
-                            <select class="form-select">
+                            <!-- Este es un menú dropdown que muestra a los directores-->
+                            <select class="form-select" th:field="*{peliculaDirector}">
+                                <!-- Usamos el atributo th:each para hacer un "for each" y generar una opción por director -->
                                 <option value="">-- Seleccione --</option>
-                                <option>
+                                <option th:each="director : ${directores}"
+                                        th:value="${director.directorId}"
+                                        th:text="${director.directorNombre}">
                                 </option>
                             </select>
                         </div>
 
-                        <div>
-                            <input type="checkbox"
-                                   name="generosIds">
-                            <label></label>
+                        <div th:each="genero : ${generos}">
+                            <input type="checkbox" name="generosIds" th:value="${genero.generoId}">
+                            <label th:text="${genero.generoNombre}"></label>
                         </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-danger">Guardar Película</button>
-                            <a class="btn btn-outline-secondary">Ver Listado</a>
+                            <a th:href="@{/peliculas/lista}" class="btn btn-outline-secondary">Ver Listado</a>
                         </div>
                     </form>
                 </div>

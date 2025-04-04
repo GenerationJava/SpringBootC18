@@ -33,16 +33,7 @@ public class PruebaController {
     }
 
     //Controlador MVC para mostrar formulario
-    @GetMapping("/formulario")
-    //Model es un objeto de Spring MVC que representa la plantilla HTML
-    public String mostrarFormulario(Model model) {
-        //Con el model.addAttribute le puedo pasar un objeto o variable a la vista
-        model.addAttribute("pelicula", new Pelicula());
-        //Para que se muestren los generos, primero llamamos al service
-        model.addAttribute("generos", generoService.findAllGenero());
-        model.addAttribute("directores", directorService.findAllDirector());
-        return "formulario";
-    }
+
 
 
 }
