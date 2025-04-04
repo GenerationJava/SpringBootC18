@@ -3,35 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Agregar Película</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Nueva Película</h1>
+<body class="bg-dark">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h1 class="h4 mb-0">Nueva Película</h1>
+                </div>
 
-<form th:action="@{/peliculas/guardar}" th:object="${pelicula}" method="post" enctype="multipart/form-data">
+                <div class="card-body">
 
-        <label>Título:</label>
-        <input type="text" th:field="*{peliculaTitulo}" required>
+                    <form method="post">
 
-        <label>Año:</label>
-        <input type="number" th:field="*{peliculaAnio}" min="1880" max="2025">
+                        <div class="mb-3">
+                            <label class="form-label">Título:</label>
+                            <input type="text" class="form-control" required>
+                        </div>
 
-    <!-- URL de Imagen -->
-    <div>
-        <label>URL de la Imagen:</label>
-        <input type="text" th:field="*{peliculaImagenUrl}">
-    </div>
+                        <div class="mb-3">
+                            <label class="form-label">Año:</label>
+                            <input type="number" class="form-control">
+                        </div>
 
-    <div>
-        <label>Géneros:</label>
-        <div th:each="genero : ${generos}">
-            <input type="checkbox" name="generosIds" th:value="${genero.generoId}">
-            <label th:text="${genero.generoNombre}"></label>
+                        <div class="mb-3">
+                            <label class="form-label">URL de la Imagen:</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Director:</label>
+                            <select class="form-select">
+                                <option value="">-- Seleccione --</option>
+                                <option>
+                                </option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <input type="checkbox"
+                                   name="generosIds">
+                            <label></label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger">Guardar Película</button>
+                            <a class="btn btn-outline-secondary">Ver Listado</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <button type="submit">Guardar Película</button>
-</form>
-
-<a th:href="@{/peliculas/listado}">Ver Listado de Películas</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

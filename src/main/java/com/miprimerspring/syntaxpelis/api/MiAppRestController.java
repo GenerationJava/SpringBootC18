@@ -47,13 +47,6 @@ public class MiAppRestController {
     @GetMapping("/peliculas")
     public List<Pelicula> getListaPeliculas() {
         //Llamado a método de guardar para verificar que se guarda la película
-        Director directorPrueba = directorService.saveDirector(new Director());
-        Pelicula peliculaPrueba = new Pelicula();
-        peliculaPrueba.setPeliculaAnio(2020);
-        peliculaPrueba.setPeliculaTitulo("Pelicula de Prueba");
-        peliculaPrueba.setPeliculaDuracion(120);
-        peliculaPrueba.setPeliculaDirector(directorPrueba);
-        peliculaService.savePelicula(peliculaPrueba);
         return peliculaService.findAllPelicula();
     }
 

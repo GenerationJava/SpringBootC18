@@ -2,26 +2,64 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Lista Peliculas</title>
+    <title>Listado de Películas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
-<body>
-<h1> Peliculas disponibles</h1>
-  <div>
-    <table>
-      <thead>
-        <tr>Titulo</tr>
-        <tr>Año</tr>
-        <tr>Duracion</tr>
-      </thead>
-      <tbody>
-       <tr th:each="pelicula: ${lista}">
-         <td th:text="${pelicula.peliculaTitulo}"></td>
-         <td th:text="${pelicula.peliculaAnio}"> </td>
-         <td th:text="${pelicula.peliculaDuracion}"> </td>
-       </tr>
-      </tbody>
-    </table>
-  </div>
- <a th:href="@{/peliculas/agregar}">Agregar película</a>
+<body class="bg-dark">
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0 text-light">Películas Disponibles</h1>
+        <a class="btn btn-success">+ Nueva Película</a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Título</th>
+                        <th>Año</th>
+                        <th>Director</th>
+                        <th>Géneros</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <img class="img-thumbnail" width="100">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <span class="badge bg-secondary me-1"></span>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-outline-info p-1">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-warning p-1 mx-1">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-danger p-1">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
